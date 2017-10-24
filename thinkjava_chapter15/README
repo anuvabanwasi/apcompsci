@@ -1,0 +1,181 @@
+
+APCS - Chapter 15 Exercises from Think AP Java
+
+Exercise 15.1
+
+I prefer the merge method as an object method because it does not require any parameters to be passed to it and has a more concise method signature. Furthermore, the code does not require each deck
+to be called by name to check the length and other values. I think that in terms of readability, though, the merge method is slightly more readable when it is static because the reader can tell 
+when the first deck of cards or the second deck of cards is being compared. 
+
+
+Exercise 15.2 & 15.3
+
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/Exercises.java
+
+These two exercises demonstrated the transition between static methods and object methods and vice versa. A static method can converted to a object method by removing the static keyword, eliminating
+any parameters, and perhaps change the name of the method to reflect the situation better. The same process is repeated the other way around for converting an object method to a static method where
+the keyword static needs to be added and any type of data that the method uses has to be passed in as a parameter. 
+
+
+Exercise 15.4
+
+15.4.1. See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/Rational.java
+
+Output of program:
+First rational number
+3/14
+Second rational number
+2/7
+Negate rational number
+-2/7
+Convert rational number to double
+-0.2857142857142857
+Reduce rational number
+1/3
+add 2 rational numbers
+22/15
+subtract 2 rational numbers
+-2/15
+
+15.4.2. In Java its okay to invoke a static method using an object instance or the class name. Therefore I only get warnings but not errors when I call a static method from main() using the object
+instance. In the static method when I try to reference the this keyword I get error that "since cannot use this in a static context" which makes sense since it is Illegal to reference instance 
+variable from class method.
+
+15.4.3. While object methods and class methods are both useful under different circumstances, the programmer should choose the appropriate type with care. Some of the disadvantages of class methods
+is that they cannot be overidden or declared in interfaces - two fundamental concepts to polymorphism and inheritance. Futhermore, static methods maintain global state which inherently poses a 
+problem to encapsulation. Static methods also take up space in memory until the termination of the program. Because static methods cannot be garbage collected, memory overflow and other problems 
+can result. However, functional/procedural programming like static methods can be useful when designing utility methods are used throughout the code. For example, classes like Math and Util use 
+static methods because the operations are generalized to the whole class and not just ot the object. This can be helpful when one does not want to have to create an object to invoke a method and 
+can just invoke it on the class name. The advantage of object methods over class methods are that they are more concise. Object methods, unlike static methods, do not require any data to passed in 
+as parameters to them. This makes the method signature of object methods more concise. Object methods are also more useful when it comes to object oriented code becasue they can be overriden and 
+used in interfaces. 
+
+Exercise 15.5
+
+This last exercise was an excellent demonstration of objected oriented programming concepts like inheritance and object methods vs. class methods. This exercise dealt with analyzing a random deal 
+of poker cards - making it even more interesting. The exercise also helped me work on my loops, usage of boolean, class declerations with the keyword extends, and writing helper methods for 
+modularization.
+
+15.5.1. The code at http://www.wbmerriman.net/apcs/thinkjava/code/CardSoln3.java compiles and runs. The below is the output of the program:
+
+Ace of Diamonds
+Ace of Diamonds
+Ace of Diamonds
+true
+10 of Clubs
+Jack of Clubs
+Queen of Clubs
+King of Clubs
+Ace of Clubs
+
+15.5.2 and 15.5.3
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/CardSoln3_AB.java
+
+15.5.4
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/CardSoln3_AB.java
+The code generates the below output
+
+=======Printing Deck/Hand======
+2 of Diamonds
+5 of Clubs
+Ace of Spades
+8 of Spades
+Jack of Diamonds
+=======Printing Deck/Hand======
+Queen of Spades
+Jack of Clubs
+9 of Clubs
+3 of Hearts
+King of Spades
+=======Printing Deck/Hand======
+3 of Diamonds
+7 of Spades
+10 of Spades
+Ace of Hearts
+4 of Diamonds
+=======Printing Deck/Hand======
+6 of Hearts
+6 of Spades
+8 of Hearts
+9 of Spades
+10 of Clubs
+
+15.4.5 and 15.4.6
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/CardSoln3_AB.java
+
+15.4.7
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/CardSoln3_AB.java
+
+Program Output Below:
+
+% age probablilities for 5 card poker hand
+
+%age probability of flush          0.22381
+%age probability of three kind     2.1
+
+I get the above probabilities when I run 5,000 trials by shuffling the deck and generating poker hands. As we see the probabilities match up fairly closely with the theoritical probabilities as
+specified in https://en.wikipedia.org/wiki/Poker_probability. I get a slightly higher probability for flush. This is expected since above is the practical probabililty while the probability
+as computed in the above wikipedia page is the theoritcal probability. Also I ran the above program for only 5,000 trials while there are 2,598,960 possibilities or number of ways of drawing a 
+poker hand from a deck of 52 cards.
+
+15.4.8
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/CardSoln3_AB.java
+
+Program Output Below:
+% age probablilities for 5 card poker hand
+
+%age probability of straight flush 0.00158
+%age probability of four kind      0.0242
+%age probability of full house     0.14175
+%age probability of flush          0.19604
+%age probability of straight       0.35179
+%age probability of three kind     2.13305
+%age probability of two pair       3.16727
+%age probability of one pair       43.81122
+%age probability of high card      50.17311
+Total %age probability             100.0
+
+I get the above probabilities when I run 2,598,960 trials by shuffling the deck and generating poker hands. As we see the probabilities match up closely with the theoritical probabilities as
+specified in https://en.wikipedia.org/wiki/Poker_probability. I get a slightly higher probability percentage for "one pair" poker hands and slightly lower probability for "two pair" poker hands. 
+This difference can be attributed to practical versus theoritical probabilities. At the same time the practical probability is close to the theoritical probability in this case since the number of 
+trials is large at 2,598,960. I chose 2,598,960 trials since there are 2,598,960 possibilities or number of ways of drawing a poker hand from a deck of 52 cards.
+
+15.5.9
+See github at https://github.com/anuvabanwasi/apcs/blob/master/thinkjava_chapter15/CardSoln3_AB.java
+
+Program Output Below:
+
+% age probablilities for 7 card poker hand
+
+%age probability of straight flush 0.00476
+%age probability of four kind      0.01429
+%age probability of full house     0.10952
+%age probability of flush          0.20476
+%age probability of straight       0.32381
+%age probability of three kind     2.23333
+%age probability of two pair       2.90952
+%age probability of one pair       43.47619
+%age probability of high card      50.72381
+Total %age probability             100.0
+
+I get the above probabilities when I run 1000 trials. The denominator for the probabilities in this case is 21*1000= 21,000 since there are 21 combinations in 7 choose 5. The probabilities in this 
+case does not match up as closely to the theoritical probabilities as specified in https://en.wikipedia.org/wiki/Poker_probability. I think some of the differences is since the possible 
+combinations is 133,784,560 and I have only 21,000 combinations in my experiment. In addition the probabilities I get for 7 card poker is almost the same as I get for 5 card poker. Another reason 
+for this could be I am missing combinations. In future I plan to research the topic further and try to fix the issue.
+
+
+Acknowledgements:
+I would like to thank Mr. Kuszmaul for giving us the assignment of the Think AP Java textbook. It was extremely helpful in reviewing object methods, class methods, inheritance, and other object 
+oriented programming concepts. I would also like to thank the following resources as references I used while working on this assignment: 
+
+https://stackoverflow.com/questions/37717885/making-all-methods-static 
+http://introcs.cs.princeton.edu/java/21function/
+https://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html
+http://www.geeksforgeeks.org/static-methods-vs-instance-methods-java/
+
+The below 3 references from stackoverflow helped me to generate a combination of poker hands from 7 poker hand (generate all combinations of 5 cards from 7 cards)
+1. https://stackoverflow.com/questions/4640034/calculating-all-of-the-subsets-of-a-set-of-numbers
+2. https://stackoverflow.com/questions/2920315/permutation-of-array
+3. https://stackoverflow.com/questions/29910312/algorithm-to-get-all-the-combinations-of-size-n-from-an-array-java
+
+

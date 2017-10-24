@@ -1,0 +1,191 @@
+					 Introduction
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+The objective of this project is to design and implement an application that models propositional logic and evaluate a logical sentence for a truth assignment. Propositional Logic deals with propositions - both simple sentences and compound sentences. There are 4 major components to the program.
+
+1. Create proposition constants and compound logical sentences 
+2. Evaluate a Conjunction, Negation, Disjunction, Implication and Biconditional compound logic sentence against a truth assignment
+3. Check if a given logic expression is valid 
+4. Find the index of the rightmost character of the first substring of the argument that is enclosed by matching parens and which contains no parenthesis
+5. Print out a truth table for given propositional constants
+
+
+					Usage
+———————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+1. Download the executable logic.jar jar file from github to a computer that has java installed
+2. Open command line terminal and run the below commands on the command line
+   1. cd <path to where jar file is downloaded>
+   2. java - jar logic.jar
+
+
+					What does the program do?
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+
+The program consists of 10 classes - PropositionConstant.java, LogicalSentence.java, Negation.java, Conjunction.java, Disjunction.java, 
+Implication.java, BiConditional.java, TruthAssignment.java, LegalSentence.java and LogicClient.java. LogicClient.java contains 
+the main() method of the application.
+
+PropositionConstant.java - This class represents a Proposition Constant in propositional logic. A proposition constant is a set of primitive 
+symbols. Proposition constants are written as strings. For example, "a" or "b". It represents a possible condition of the world that 
+may be true or false.
+
+LogicalSentence.java - This class represents a logical sentence in propositional logic. There are 2 types of sentences - simple sentences 
+and compound sentences formed from simple sentences and/or other compound sentences. This class has a method evaluate(TruthAssignment) that 
+takes in a truth assignment and returns a boolean that is true if the sentence is true for the given truth assignment. 
+
+Negation.java - This class extends LogicalSentence.java and represents a compound logical sentence, specifically a negation logical sentence. 
+The constructor of this class takes in a logic sentence, representing the sentence to be negated. The negation is represented by the negation 
+operator ~ followed by the logical sentence to be negated. For example, ~p
+
+Conjunction.java - This class extends LogicalSentence.java and represents a compound logical sentence, specifically a conjunction logical sentence. 
+The constructor of this class takes 2 conjuncts where each can be a logical sentence. The conjunction is represented by the conjuncts connected 
+by the conjunction operator. For example, p && q.
+
+Disjunction.java - This class extends LogicalSentence.java and represents a compound logical sentence, specifically a disjunction logical sentence.
+The constructor of this class takes 2 logical sentences. The disjunction is represented by the disjoints connected by the disjoint operator. 
+For example, p || q.
+
+Implication.java - This class extends LogicalSentence.java and represents a compound logical sentence, specifically a implication logical sentence.
+The constructor of this class takes 2 logical sentences. The implication is represented by the sentences connected by the implication operator. 
+For example, p => q
+
+Biconditional.java - This class extends LogicalSentence.java and represents a compound logical sentence, specifically a biconditional logical 
+sentence. The constructor of this class takes 2 logical sentences. The biconditional is represented by the sentences connected by the 
+biconditional operator. For example, p <=> q
+
+TruthAssignment.java - This class represents a truth assignment. A truth assignment is a function that assigns a truth value to each proposition 
+constant. This class uses a HashMap internally to store the proposition constant and the boolean truth value for that constant. 
+The boolean true is used to represent truth value of 1 and boolean false is used to represent truth value of 0.
+
+LegalSentence.java - This class checks if a given logical expression is a legal sentence. It has a method legalSentence(String s) that takes a 
+String and returns a boolean that is true when the String represents a legal propositional logic sentence. Note that LegalSentence.legalSentence() 
+calls findMatch() if the input String contains an open parenthesis character. 
+
+
+LogicClient.java - This class is a client representing usage of the above classes. In addition, it has the following methods.
+	1. legal(String s) - This method takes in a string representing a logical expression and determines whether the string is a legal expression.
+	For example, "a&b" is a valid logical expression where as "a&" is not a valid logical expression. Note that legal() method calls 
+	LegalSentence.legal() with a logical expression as the input.
+
+	2. findMatch(String s, int i) - findMatch is a helper method used by the legal() method to check if a sentence with parenthesis is legal. 
+	For a sentence to be legal, it should have balanced matching parenthesis. In order to determine if a sentence in terms of parenthesis, 
+	first a check needs to be made if the number of open parenthesis is equal to number of closed parenthesis.
+	Once a number of open and close parenthesis match, all the parenthesis can be stripped and the legal() method can be invoked on the stripped 
+	logical expression.
+   
+    This method takes in a string and returns a String representing a logical expression without parenthesis or an error. It first checks whether 
+    the parenthesis are balanced. To do this it uses recursion. In order to strip all the open and close parenthesis findMatch traverses the 
+    input String character by character. When findMatch finds an open parenthesis character it calls findMatch() recursively with the 
+    remaining substring (without the open parenthesis it encountered) and increments the depth. The depth is used to keep track of the level of 
+    nesting. When the method finds any other character other than open or close parenthesis it appends the previously traversed substring 
+    (that was so far stripped of open or close parenthesis encountered) with the remaining substring. When findMatch finds a close parenthesis 
+    character it does the same thing as when it finds an open parenthesis but it decrements the depth. The depth parameter is decremented 
+    since that is how the program keeps track of the nested expressions. When the length of the substring is 0 and if the depth is 0 it means 
+    its done traversing the String and it returns the String with the parenthesis stripped. If the length of the substring is 0 but the the 
+    depth is not 0, it means that there are one or more non-matching parenthesis and it returns an error.
+
+    This string can then be passed to the legal() method to check if the string is legal. Since the logical expressions can be within parenthesis the findMatch() method needs to strip all
+	the parenthesis and return the final logical expression. If the method finds that the number of open and close parenthesis do not match it returns an error. 
+
+    In conclusion parenthesis plays a role in evaluation of a logical expression however to determine whether an expression is legal in terms of parenthesis the check that is needed is if the
+    that parenthesis are balanced therefore one its determined that the expression is valid in terms of parenthesis we can remove them from the String.
+    
+	3. truthTable(String[] pc) - This method takes in an array of string representing propositional constants and prints out a truth table showing all of the possible truth assignments for the 
+	proposition constants.
+
+
+Below are the truth tables for compound sentences:
+
+Negation
+a	¬a
+
+T	F
+F	T
+
+Conjunction
+a	b	a ∧ b
+
+T	T	T
+T	F	F
+F	T	F
+F	F	F
+
+Disjunction
+a	b	a ∨ b
+
+T	T	T
+T	F	T
+F	T	T
+F	F	F
+
+Implication
+a	b	a => b
+
+T	T	T
+T	F	F
+F	T	T
+F	F	T
+
+BiConditional
+a	b	a <=> b
+
+T	T	T
+T	F	F
+F	T	F
+F	F	T
+
+
+					What the program does not do?
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+The program takes simple or compound statement and implements negation, conjunction logic, disjunction, implication and biconditional logic. Also given that the assignment is to design a logical 
+statement puzzle, the program is designed to implement Evaluation (process of determining the truth values of compound sentences sentences given a truth assignment for the truth values of 
+proposition constants). The program does not implement Satisfaction which is the opposite of Evaluation. Since Satisfaction is the opposite of Evaluation I should be able to modify my program to 
+implement Satisfaction in future.
+
+
+					Assumptions
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+1) The logical operators Not, And, Or, Implication and Biconditional supported by LegalSentence class assumes the following symbols: ~, &, |, => and <=> respectively.
+2) The input string could have blank characters but my program does not attempt to remove the blank characters in the input string (if any). I intend to do that at a later time.
+
+					Learnings
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+This assignment is unique since it combines formal logic and java. Since I had taken Computer Science Principles in 9th grade it helped me a great deal since I went through Propositional Logic
+http://logic.stanford.edu/intrologic/secondary/notes/chapter_02.html) and tried to get ideas on how to construct a logical statement puzzle. But I was not sure how I could convert it into a Java
+program. Using the starter code that Mr. Kuszmaul had given us I was able to combine it with the LegalSentence program we had written earlier in this course to start implementing the puzzle.
+Applying my learnings in the Flag project, I decided to design the program first before coding everything that came to my mind. This helped me since I was able to use inheritance concepts to design
+the compound sentence classes. When I started coding different parts of the program, I ran into several issues and it was very confusing how I can use the Boolean construct to do what I had
+intended it to do. Another major issue I ran into was to figure out how to store truth assignments and what initial values are assigned to each proposition . Later I decided to use a Java HashMap
+to store proposition and boolean truth values for the constants. The findMatch() method was particularly challenging since at first was not sure what I should be looking for and based on the
+clarification was posted in Schoology and after Mr. Kuszmaul discussed it in class I was able to implement findMatch() after several attempts.  Though I was able to get findMatch() to work for
+simple cases I had to revisit findMatch() many times before I got it right for more complicated cases. In the beginning for findMatch I was able to get simple cases working when the string had only
+one set of parenthesis. My initial code did not work properly when I had multiple or nested parenthesis. The idea that Mr. Kuszmaul gave us on using the second parameter in findMatch as a way to
+recursively call findMatch was very helpful. By incrementing the second argument the code is now able to parse out the logical statements out systematically and call legalSentence() for each
+logical statement within the inner parenthesis. I think what was particularly difficult was to get recursion to work. Since I had used recursion in my previous assignments such as LegalSentence I 
+was able to use base case and recursive case for findMatch as well. What was more hard to understand and trace the code for bugs was the fact both legalSentence() and findMatch() are recursive and
+legalSentence() calls findMatch(). I had never used recursion in this manner before. In future I will try to convert my program to convert one of the recursive methods to make it non-recursive.
+
+					Acknowledgements
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+
+I would like to thank Mr. Kuszmaul for explaining findMatch and for introducing us to Logic and for pointing us to a valuable resource to learn logic at http://logic.stanford.edu. I would like to
+thank Michael Genesereth at Stanford for publishing detailed material on Logic at http://logic.stanford.edu/intrologic/secondary/lessons/lessons.html. I used the Introduction to Logic,
+Propositional Logic chapter to find out what my code should when it evaluates both simple and compound statements. I used the Truth Tables on Wikipedia to generate the Truth Tables in this report.
+Please see references below for materials that I used for the project. 
+
+
+					References
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+1) Introduction to Logic, http://logic.stanford.edu/intrologic/secondary/index.html
+2) Propositional Logic, http://logic.stanford.edu/intrologic/secondary/notes/chapter_02.html
+3) Truth Tables - https://en.wikipedia.org/wiki/Truth_table
+
+
+
