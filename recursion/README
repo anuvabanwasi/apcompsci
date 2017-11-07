@@ -9,8 +9,9 @@ This assignment helped me understand more about Recursion. The first exercise he
 two. I found that writing a recursive function can be more concise compared to writing a function to carry out the same computation using iteration. Although in Recursion it is important to define
 the base case and the recursive case which can be tricky sometimes and easy to get wrong.
 
-For the first exercise, AS 1.11 the base case and recursive case was easy to define since it is already defined in the question. The base case is f(n) = n if n < 3 and the recursive case is f(n) = 
-n-1) + 2f(n-2) + 3f(n-3) if n >= 3.
+For the first exercise, AS 1.11 the base case and recursive case was easy to define since it is already defined in the question. The base case is f(n) = n if n < 3 and the recursive case is 
+f(n) = (n-1) + 2f(n-2) + 3f(n-3) if n >= 3.
+The order of growth of the recursive version of the program is exponential. In future I would like to rewrite the program to use Matrix Exponentiation so the order of growth can be log(n) instead.
 
 Usage for AS 1.11
 java Recursion <n>
