@@ -1,0 +1,33 @@
+Anuva Banwasi				
+Assignment 11, AS 1.11 and 1.12
+
+Link to GitHub: https://github.com/anuvabanwasi/apcompsci
+
+Learnings:
+
+This assignment helped me understand more about Recursion. The first exercise helped me to figure out how to write code to carry out computation both recursively and using iteration and compare the 
+two. I found that writing a recursive function can be more concise compared to writing a function to carry out the same computation using iteration. Although in Recursion it is important to define
+the base case and the recursive case which can be tricky sometimes and easy to get wrong.
+
+For the first exercise, AS 1.11 the base case and recursive case was easy to define since it is already defined in the question. The base case is f(n) = n if n < 3 and the recursive case is f(n) = 
+n-1) + 2f(n-2) + 3f(n-3) if n >= 3.
+
+Usage for AS 1.11
+java Recursion <Pascal Triangle Max Row Number>
+
+For the second exercise, AS 1.12 coming up with the base case and recursive case was slightly more difficult. Since every Row in Pascal’s Triangle starts with 1 and ends with 1 the base case is when 
+row=col (last value of the row)  or if col=0 (1st column).
+
+Usage for AS 1.12
+java PascalTriangle <Pascal Triangle Max Row Number>
+
+Later I would like to write the code for Pascal’s Triangle using iteration.
+
+References:
+
+Linear Recursion and Iteration, Structure and Interpretation of Computer Programs, Harold Abelson and Gerald Jay Sussman with Julie Sussman, 1996, 
+https://mitpress.mit.edu/sicp/full-text/sicp/book/node15.html
+
+More about Recursion, TopCoder
+https://www.topcoder.com/community/data-science/data-science-tutorials/an-introduction-to-recursion-part-1/
+
