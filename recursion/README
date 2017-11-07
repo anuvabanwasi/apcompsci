@@ -13,7 +13,7 @@ For the first exercise, AS 1.11 the base case and recursive case was easy to def
 n-1) + 2f(n-2) + 3f(n-3) if n >= 3.
 
 Usage for AS 1.11
-java Recursion <Pascal Triangle Max Row Number>
+java Recursion <n>
 
 For the second exercise, AS 1.12 coming up with the base case and recursive case was slightly more difficult. Since every Row in Pascal’s Triangle starts with 1 and ends with 1 the base case is when 
 row=col (last value of the row)  or if col=0 (1st column).
