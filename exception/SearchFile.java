@@ -18,6 +18,13 @@ public class SearchFile {
 
 	public static void main(String[] args) {
 		SearchFile s = new SearchFile();
+                System.out.println("\nUsage:"); 
+		System.out.println("\nThe Program will prompt the user to enter input in the following sequence.");
+		System.out.println("\n1. Location of a file.");
+		System.out.println("\n2. Term to search in the above file (program will count number of occurences of the term in the file.)");
+		System.out.println("\n3. The program will again prompt the user to enter the location of a file and search term as defined in 1 and 2 above");
+		System.out.println("\n4. The program will then ask for the search term and returns the file names where the search terms are found.");
+		
 		s.takeUserInputForFile();
 		s.takeUserInputForFile();
 		s.takeUserInputForPages();
@@ -37,13 +44,6 @@ public class SearchFile {
 	 * Input is the location of the file and a word/topic to search in the file
 	 */
 	public void takeUserInputForFile() {
-		System.out.println("\nUsage:"); 
-		System.out.println("\nThe Program will prompt the user to enter input in the following sequence.");
-		System.out.println("\n1. Location of a file.");
-		System.out.println("\n2. Term to search in the above file (program will count number of occurences of the term in the file.)");
-		System.out.println("\n3. The program will again prompt the user to enter the location of a file and search term as defined in 1 and 2 above");
-		System.out.println("\n4. The program will then ask for the search term and returns the file names where the search terms are found.");
-		
 
 		System.out.println("\nPlease enter location of file");
 		String location = scanner.nextLine();
