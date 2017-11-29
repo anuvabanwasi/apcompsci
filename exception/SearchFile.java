@@ -41,7 +41,7 @@ public class SearchFile {
 		System.out.println("Please enter the search topic");
 		String topic = scanner.nextLine();
 
-		readFile(location, topic);
+		readFile(location, topic, 0);
 	}
 
 	/**
@@ -53,31 +53,6 @@ public class SearchFile {
 
 		printPagesUnderATopic(topic);
 	}
-
-	/**
-	 * takes in a file, calls checkLine on each line if file exists (otherwise
-	 * catches FileNotFoundException)
-	 * 
-	 * @param file
-	 *            to be read
-	 */
-	///Users/anandbanwasi/eclipse-workspace/Exception/src/apcs/exception/hello.txt
-	/*
-	 * public void readFile(File file, String str) { String topic = str; int count =
-	 * 0;
-	 * 
-	 * //Scanner scanner = null;
-	 * 
-	 * try {
-	 * 
-	 * scanner = new Scanner(file);
-	 * 
-	 * while (scanner.hasNextLine()) { String line = scanner.nextLine();
-	 * if(checkLine(line, topic)) { count++; } } if(checkFileIsImportant(count))
-	 * storePage(file, str); } catch(FileNotFoundException e) { // catches runtime
-	 * error for FileNotFound exception System.out.println("File does not exist"); }
-	 * finally { //scanner.close(); } }
-	 */
 
 	/**
 	 * Checks if the line contains the keyword
@@ -144,21 +119,24 @@ public class SearchFile {
 			}
 	}
 
-
+	
 	/**
 	 * Read a file at a given path and look for string str in the file
-	 * If user enters no input for the path, then retries 2 times by asking user for a valid input. 
+	 * Calls checkLine on each line to check if the file contains str
+	 * If file does not exist throws a FileNotFoundException, attempts to correct incorrect user input by retrying 2 timess
+	 * If no valid input is received after 2 attempts, then aborts with an error code of -1
+	 * In addition, 	if user enters blank/empty input for the path, then retries 2 times by asking user for a valid input. 
 	 * If no valid input is received after 2 attempts, then aborts with an error code of -1
 	 * @param path Path to file
 	 * @param str Topic to search in file
 	 */
-	public void readFile(String path, String str) {
+	public void readFile(String path, String str, int cnt) {
 		String topic = str;
 		int count = 0;
 
 		BufferedReader br = null;
 		FileReader fr = null;
-
+			
 		try {
 			fr = new FileReader(path);
 			br = new BufferedReader(fr);
@@ -176,28 +154,18 @@ public class SearchFile {
 
 		} catch (FileNotFoundException e) {
 			// catches runtime error for FileNotFound exception
-			int tries = 0;
 
-			String location = "";
-			boolean validInput = false;
-			
-			while (tries < 2) {
-
-				System.out.println("File does not exist. Please enter a valid path to a file");
-				location = scanner.nextLine();
-				tries++;
-				if(location != null && location.length() != 0) {
-					validInput = true;
-					break;
-				}
-			}
-			
-			if(!validInput) {
+			if(cnt >= 2) {
 				System.err.println("Wrong user input. Aborting with error code -1");
 				System.exit(-1);
 			}
-			else
-				readFile(location, str);
+			
+			cnt = cnt + 1;
+			
+			System.out.println("File does not exist. Please enter a valid path to a file");
+			String location = scanner.nextLine();
+			
+			readFile(location, str, cnt);
 			
 		} catch (IOException e) {
 			System.err.println("IOException occured");
