@@ -2,7 +2,6 @@
  * lets user store files under a keyword of their choice and then view all the files they have stored under a certain keyword
  * @author Anuva Banwasi
  */
-package apcs.exception;
 
 import java.io.BufferedReader;
 import java.io.File;
