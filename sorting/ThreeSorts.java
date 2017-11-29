@@ -1,7 +1,6 @@
 /**
  * @author Anuva Banwasi
  */
-package apcs.sort;
 
 public class ThreeSorts {
 	public ThreeSorts() {
