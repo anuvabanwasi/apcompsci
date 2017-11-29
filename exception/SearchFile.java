@@ -25,6 +25,9 @@ public class SearchFile {
 		s.handleCleanUp();
 	}
 
+	/**
+	 * Close scanner
+	 */
 	private void handleCleanUp() {
 		if (scanner != null)
 			scanner.close();
