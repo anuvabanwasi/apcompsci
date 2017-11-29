@@ -13,12 +13,15 @@ public class ThreeSorts {
 		
 		int[] bubbleSortedBooks = x.bubbleSort(books);
 		x.printArray(bubbleSortedBooks);
+                System.out.println();
 		
 		int[] insertionSortedBooks = x.insertionSort(books);
 		x.printArray(insertionSortedBooks);
+                System.out.println();
 		
 		int[] selectionSortedBooks = x.selectionSort(books);
 		x.printArray(selectionSortedBooks);
+                System.out.println();
 		
 	}
 	
