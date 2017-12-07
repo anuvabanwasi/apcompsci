@@ -1,0 +1,9 @@
+Implementation of QuickSort.
+
+This implementation picks last element as pivot
+
+References:
+
+http://homepages.math.uic.edu/~leon/cs-mcs401-s08/handouts/quicksort.pdf
+http://algs4.cs.princeton.edu/lectures/23Quicksort.pdf
+http://www.cs.princeton.edu/courses/archive/spr07/cos226/lectures/04MergeQuick.pdf
