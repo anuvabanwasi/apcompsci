@@ -1,0 +1,9 @@
+Implementation of MapCar in Java. See http://www.lee-mac.com/mapcarlambda.html for more information on what is a Mapcar
+This MapCar is an implementation that takes in a list and a lambda function and returns a list by applying the lambda function to each element of the list
+
+It consists of the following:
+
+1) Abstract lambda function that must be implemented by all classes that extend MapCar.
+2) lambda function to be applied to each element of the list
+
+See the sub classes of MapCar (MapCarImpl, MapCarIntegerImpl and MapCarTitleCaseImpl) for three types of implemenation of MapCar.
