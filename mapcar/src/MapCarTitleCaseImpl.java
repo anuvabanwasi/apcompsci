@@ -28,7 +28,7 @@ public class MapCarTitleCaseImpl extends MapCar{
 
 	/**
 	 * Specific implementation of the lambda function. Each class extending MapCar must provide an implementation
-	 * Converts the first character of incoming string to upper case (CamelCase)
+	 * Converts the first character of incoming string to upper case
 	 */
 	public String lambda(Object x) {
 		return ((String)x).substring(0,1).toUpperCase() + ((String)x).substring(1);
