@@ -11,6 +11,11 @@
 	
 public class QuickSort {
 	
+	/**
+	 * After starting the partition start sorting the elements on both sides of the pivot.
+	 * The resursive sort then takes care of the partitioning the elements within that particular branch
+	 */
+	
 	public void sort(int[]num, int lo, int hi) {
 		
 		if (lo < hi ) {
@@ -20,6 +25,10 @@ public class QuickSort {
 		} else
 			return;
 	}
+	/**
+	 * Picks the last element as the pivot. Partition all elements of the array less than the pivot before the pivot 
+	 * and all elements of the array greater than the pivot after the pivot.
+	 */
 	
 	public int partition(int[] num, int lo, int hi) {
 		int i = lo;
@@ -40,7 +49,6 @@ public class QuickSort {
 				int tmp = num[i];
 				num[i] = num[j];
 				num[j] = tmp;
-				//print(num);
 			} else
 				break;
 			
@@ -48,8 +56,6 @@ public class QuickSort {
 		int tmp = num[j];
 		num[j] = num[pivotIndex];
 		num[pivotIndex] = tmp;
-		//System.out.println("pivotIndex  " +  pivotIndex + " j " + j);
-		//print(num);
 		return j;
 		
 	}
@@ -63,11 +69,7 @@ public class QuickSort {
 	
 	public static void main(String[] args) {
 		QuickSort qs = new QuickSort();
-		//int[] num = {9,9,2,1,4,5,1,9};
-		//int[] num = {9,1,4,5,10};
 		int[] num = {10,7,4,3,1};
-		//int[] num = {4,1,2,3};
-		//int[] num = {4,2,1,3,5};
 		qs.print(num);
 		qs.sort(num, 0 , num.length - 1);
 		qs.print(num);
