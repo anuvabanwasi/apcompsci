@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Implementation of MapCar that operates on Strings in a list
+ * Implementation of MapCar that operates on Strings in a List
  * @author Anuva Banwasi
  *
  */
