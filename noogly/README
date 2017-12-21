@@ -1,7 +1,10 @@
 
+GitHub Link: https://github.com/anuvabanwasi/apcompsci/tree/master/noogly
+
+
 Background:
 
-I was looking to work on an independent project that incorporates most of the concepts we learned in APCS - Java Swing, Data Structures, Object Oriented Programming in Java, Exceptions, Logic, Recursion,
+I wanted to work on an independent project that incorporates most of the concepts we learned in APCS - Java Swing, Data Structures, Object Oriented Programming in Java, Exceptions, Logic, Recursion,
 Strings, Arrays, Lists, HashMaps, File IO among other topics in Java. A boolean search application encompasses almost all the concepts that was covered in APCS and I was able to work on the concepts that 
 comes together in one application.
 
@@ -13,7 +16,7 @@ parenthesis for more sophisticated boolean queries. Noogly properly supports pre
 
 Usage:
 
-Download jar file from https://github.com/anuvabanwasi/apcompsci and double click on the jar file to run the application. 
+Download jar file from https://github.com/anuvabanwasi/apcompsci/blob/master/noogly/noogly.jar and double click on the jar file to run the application. 
 ( Use a computer that has Java Runtime Environment or download JRE from here, http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html )
 
 Here are the key components of the project:
@@ -62,6 +65,24 @@ not dog
 (quick or sea) and dog
 quick or sea and dog
 
+What I learned?
+
+This project taught me fundamentals of how a search engine is written. Now I am able to appreciate the power of using files to store indexes and convert contents of a file into maps and use data structures 
+like maps and lists to process search queries. 	There are two main classes which do most of the work - Query.java - https://github.com/anuvabanwasi/apcompsci/blob/master/noogly/src/org/noogly/query/
+Query.java  and InvertedIndex.java - https://github.com/anuvabanwasi/apcompsci/blob/master/noogly/src/org/noogly/index/InvertedIndex.java. The InvertedIndex.java is written so that it can read all files
+inside a directory. It can also traverse the subdirectories in the main directory and read all the files in them as well and create the Document Index and the main Index. In the first iteration of Query.java 
+I was not sure how to process more sophisticated queries using paranthesis. Then I realized I could start treating paranthesis as an operator and apply similar rules of operation as I would for and, or, not. One of the most critical part of Query.java uses the Stack data structure. I use one stack for the terms and one stack for the operators (or, not, and, left paren, right paren). This project taught me me how to use the Stack data structure to keep track of the terms and the operators and apply them together to find the results of a query (Reference: http://www.geeksforgeeks.org/expression-evaluation/). After the 
+results are found I then apply intersection (if the operator is "and") and union (if the operator is "or") of lists. The project taught me when I should use list.add and when to use list.addAll.
+
+Future Scope for Enhancements:
+
+1) Removing stop words - Common words like the, for, was, is, has,...must be ignored while performing searches since users normally are not looking for documents that has the most common words like the ones
+listed here: https://www.ranks.nl/stopwords
+2) Spell correction - If user enters common spelling errors the application must detect those and apply spell correction
+3) Compression - If there are millions of files to be processed for indexing (like what happens in regular search engines) then the index must be stored in a compressed format so it does not cause index 
+bloat
+4) Suggestions - As the user is typing give the user a list of suggested queries based on what other users query for
+
 
 Project References:
 
@@ -76,6 +97,3 @@ https://www.mkyong.com/java/how-to-write-to-file-in-java-bufferedwriter-example/
 https://www.mkyong.com/java/how-to-traverse-a-directory-structure-in-java/
 https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
 http://www.geeksforgeeks.org/expression-evaluation/
-
-
-
