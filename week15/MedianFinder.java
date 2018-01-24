@@ -19,7 +19,7 @@ public class MedianFinder {
 	 * Quick Select is an algorithm that finds the kth smallest element in an unordered list. 
 	 * When doing selection, we already know which partition our desired element lies in, since the pivot is in its final sorted position, with all those preceding it in an unsorted order and all those following it in an unsorted order
 	 * If the array length is odd, the median is the (n/2)th smallest element 
-	 * If the array length is even, the median is the average of the (n/2)th and (n/2+1)th smallest element 
+	 * If the array length is even, the median is the average of the (n/2)th and ((n/2)+1)th smallest element 
 	 * @param num array of integers
 	 * @return median
 	 */
