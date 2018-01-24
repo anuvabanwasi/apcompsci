@@ -2,14 +2,12 @@
  * This class computes the median of an array of integers using QuickSelect algorithm in O(n) time. It does not sort the input array.
  * It uses partitioning to find the median
  * @author Anuva Banwasi
- * @version 01/22/2018
  *
  */
 
 public class MedianFinder {
 	public static void main(String[] args){
 		MedianFinder mf = new MedianFinder();
-		//{1,2,3,5,8,13,19,21,34,55}
 		//array is not sorted
 		int[] num = new int[]{21,3,34,5,13,8,2,55,1,19};
 		System.out.println(mf.computeMedian(num));
@@ -20,10 +18,8 @@ public class MedianFinder {
 	 * This method uses the partition method to perform a quick selection of the middle two numbers or middle number depending on the length of the array
 	 * Quick Select is an algorithm that finds the kth smallest element in an unordered list. 
 	 * When doing selection, we already know which partition our desired element lies in, since the pivot is in its final sorted position, with all those preceding it in an unsorted order and all those following it in an unsorted order
-	 * The median is the (n/2)th smallest element (if the array length is odd) 
-	 * or the median is the average of the (n/2)th and (n/2+1)th smallest element if the array length is even
-	 * if the array length is even then QuickSelect is called twice
-	 * if the array length is odd then QuickSelect is called once
+	 * If the array length is odd, the median is the (n/2)th smallest element 
+	 * If the array length is even, the median is the average of the (n/2)th and (n/2+1)th smallest element 
 	 * @param num array of integers
 	 * @return median
 	 */
@@ -45,7 +41,11 @@ public class MedianFinder {
 			return select(num,mid);
 		}
 	}
-
+	
+	/**
+	 * Print the array
+	 * @param num
+	 */
 	private void printArr(int[] num) {
 		for(int i = 0; i < num.length; i++)
 			System.out.print(num[i] + " ");
@@ -84,7 +84,7 @@ public class MedianFinder {
 				j = pivot - 1;
 		}
 		
-		return Integer.MIN_VALUE;
+		return num[i];
 	}
 
 	/**
