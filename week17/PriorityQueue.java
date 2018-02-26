@@ -10,49 +10,7 @@ public class PriorityQueue {
 	int[] arr = new int[15];
 	int size = 0;
 	
-	public static void main(String args[]){
-		PriorityQueue pq = new PriorityQueue();
-		System.out.println("=========================== Adding elements to priority queue ===========================");
-		pq.add(6);
-		pq.add(4);
-		pq.add(2);
-		pq.add(7);
-		pq.add(5);
-		pq.add(3);
-		
-		System.out.println("=========================== Print Heap ===========================");
-		pq.printHeap();
-		
-		System.out.println("=========================== Returning size of priority queue ===========================");
-		System.out.println(pq.size());
-		
-		System.out.println( "=========================== Checking if priority queue contains element ===========================");
-		System.out.println(pq.contains(4));
-		
-		System.out.println("=========================== Delete specified element from priority queue if it exists ===========================");
-		System.out.println(pq.remove(7));
-		
-		System.out.println("=========================== Print Heap ===========================");
-		pq.printHeap();
-		
-		System.out.println( "=========================== Deleting all elements of priority queue ===========================");
-		pq.clear();
-		
-		System.out.println();
-		System.out.println("=========================== Adding elements to priority queue ===========================");
-		pq.add(6);
-		pq.add(4);
-		pq.add(2);
-		pq.add(7);
-		pq.add(5);
-		pq.add(3);
-		
-		System.out.println( "=========================== Repeatedly remove max element of priority queue ===========================");
-		while (pq.size() != 0)
-			System.out.println("removed : " + pq.poll());
-		
-	}
-
+	
 	/**
 	 * Insert a value into a priority queue. Insertion is as follows
 	 * (1) Insert the element at the end of the array. 
@@ -60,7 +18,7 @@ public class PriorityQueue {
 	 * 
 	 * @param val value to be inserted into the priority queue
 	 */
-	private void add(int num) {
+	public void add(int num) {
 		arr[size] = num;
 		//when inserting an element in the heap, do not rebuild heap - building heap is n log n operation, just do a swim up which is log n operation
 		swimUp(size);
@@ -211,4 +169,48 @@ public class PriorityQueue {
 		arr[i] = arr[largest];
 		arr[largest] = tmp;
 	}
+	
+	public static void main(String args[]){
+		PriorityQueue pq = new PriorityQueue();
+		System.out.println("=========================== Adding elements to priority queue ===========================");
+		pq.add(6);
+		pq.add(4);
+		pq.add(2);
+		pq.add(7);
+		pq.add(5);
+		pq.add(3);
+		
+		System.out.println("=========================== Print Heap ===========================");
+		pq.printHeap();
+		
+		System.out.println("=========================== Returning size of priority queue ===========================");
+		System.out.println(pq.size());
+		
+		System.out.println( "=========================== Checking if priority queue contains element ===========================");
+		System.out.println(pq.contains(4));
+		
+		System.out.println("=========================== Delete specified element from priority queue if it exists ===========================");
+		System.out.println(pq.remove(7));
+		
+		System.out.println("=========================== Print Heap ===========================");
+		pq.printHeap();
+		
+		System.out.println( "=========================== Deleting all elements of priority queue ===========================");
+		pq.clear();
+		
+		System.out.println();
+		System.out.println("=========================== Adding elements to priority queue ===========================");
+		pq.add(6);
+		pq.add(4);
+		pq.add(2);
+		pq.add(7);
+		pq.add(5);
+		pq.add(3);
+		
+		System.out.println( "=========================== Repeatedly remove max element of priority queue ===========================");
+		while (pq.size() != 0)
+			System.out.println("removed : " + pq.poll());
+		
+	}
+
 }
