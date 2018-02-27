@@ -1,6 +1,11 @@
 /**
  * Priority queue implementation using arrays. This is a max heap - head of the queue is the element with the largest value
- * Time Complexity - Get largest element in queue - O(1), Insert - O(logn) 
+ * Time Complexity - 
+ * Get largest element in queue - O(1) because can be immediately located at the top since this is a max heap
+ * Insert - O(log n) because in worst case will have to follow path from leaf to root to put the element in its right place (this distance is the height of 
+ * the tree, which is equal to log n)
+ * Remove largest element in queue - O(log n) because in worst case, will have 
+ * 
  * Reference - https://en.wikipedia.org/wiki/Priority_queue
  * @author Anuva Banwasi
  * @version 02/25/2018
@@ -28,12 +33,12 @@ public class PriorityQueue {
 	/**
 	 * Build a heap out of elements of array of length n at position i
 	 * If the heap order is violated at a node, then fix the violation by exchanging the node with the larger of its 2 children. This may cause
-	 * a heap order violation at the child, therefore recursively swim down the heap fixing heap violations if any till heap order fixed or leaf is reached
+	 * a heap order violation at the child, therefore recursively swim down the heap fixing heap violations if any until heap order fixed or leaf is reached
 	 * Reference - https://algs4.cs.princeton.edu/24pq/
 	 * @param n number of elements in array
 	 * @param i position of node
 	 */
-	private void heapify(int n, int i) {
+	public void heapify(int n, int i) {
 		int largest = i;
 		int l = 2*i + 1;
 		int r = 2*i + 2;
@@ -52,11 +57,17 @@ public class PriorityQueue {
 	}
 	
 	/**
-	 * Delete the head of the priority queue
+	 * Delete the head of the priority queue. Deletion is as follows
+	 * (1) Replace the value in the root with the value at the end of the array, Remove that leaf from the tree.
+	 * (2) call heapify() method to restore order property: 
+	 * each time, if the value in the current node is less than one of its children, then swap its value with the larger child 
+	 * (ensures that the new root value is larger than both of its children)
+	 * 
+	 * Reference: http://pages.cs.wisc.edu/~vernon/cs367/notes/11.PRIORITY-Q.html
 	 * 
 	 * @return value at head of priority queue or -1 if the queue is empty
 	 */
-	private int poll(){
+	public int poll(){
 		if(arr.length == 0)
 			return -1;
 		
@@ -69,11 +80,11 @@ public class PriorityQueue {
 	}
 	
 	/**
-	 * Remove an occurrence of value from the priority queue if present
+	 * Remove an occurrence of value from the priority queue if present - same process as poll() method above
 	 * @param value value to be removed from queue
 	 * @return true if the remove was successful, false otherwise
 	 */
-	private boolean remove(int value) {
+	public boolean remove(int value) {
 		int index = index(value);
 		if(index != -1) {
 			size--;
@@ -93,7 +104,7 @@ public class PriorityQueue {
 	 * @param i position of node
 	 */
 	
-	private void swimUp(int i) {
+	public void swimUp(int i) {
 		
 		while( i >= 0 && arr[i] > arr[(i-1)/2]){
 			swap(arr,i, (i-1)/2);
@@ -129,8 +140,8 @@ public class PriorityQueue {
 	}
 	
 	/**
-	 * Return the value at the root node of the priority queue but does not remove it from the
-	 * queue.
+	 * Return the value at the root node (which exists as the first element of the array representation)
+	 * of the priority queue but does not remove it from the queue.
 	 * 
 	 * @return root of the queue or -1 if root is empty
 	 */
@@ -142,7 +153,7 @@ public class PriorityQueue {
 	
 	/**
 	 * Return the number of elements in queue
-	 * 
+	 * The variable size keeps track of all of the elements in the heap (elements that do exist in the array)
 	 * @return number specifying number of elements in queue
 	 */
 	public int size() {
@@ -156,7 +167,7 @@ public class PriorityQueue {
 		arr = new int[arr.length];
 		size = 0;
 	}
-
+	
 	private void printHeap() {
 		for(int i = 0; i < size; i++)
 			System.out.print (arr[i] + " ");
@@ -169,7 +180,7 @@ public class PriorityQueue {
 		arr[i] = arr[largest];
 		arr[largest] = tmp;
 	}
-	
+
 	public static void main(String args[]){
 		PriorityQueue pq = new PriorityQueue();
 		System.out.println("=========================== Adding elements to priority queue ===========================");
