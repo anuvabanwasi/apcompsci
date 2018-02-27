@@ -6,12 +6,12 @@
  * Reference - https://en.wikipedia.org/wiki/Skew_heap
  * 
  * @author Anuva Banwasi
- * @version 02/25/2018
+ * @version 02/25/2018 
  *
  */
 public class MergeablePriorityQueue {
-	private Node root;
-	private int size = 0;
+	public Node root;
+	public int size = 0;
 
 	MergeablePriorityQueue() {
 	}
@@ -19,11 +19,9 @@ public class MergeablePriorityQueue {
 	/**
 	 * Insert a value into a priority queue. Insertion is as follows
 	 * 
-	 * (1) Create a new node with the data equal to val. (2) Merge root with the
-	 * tree with one node
+	 * (1) Create a new node with the data equal to val. (2) Merge root with the tree with one node
 	 * 
-	 * @param val
-	 *            value to be inserted into the priority queue
+	 * @param val - value to be inserted into the priority queue
 	 */
 	public void add(int val) {
 		Node n = new Node(val);
@@ -35,14 +33,12 @@ public class MergeablePriorityQueue {
 	 * Compare the roots of 2 heaps p and q Let p with the heap with the smaller
 	 * value in root Result heap r formed by merging p and q is generated as follows
 	 *
-	 * (1) Store the left subtree of p in a temp node (2) Recursively merge p's
-	 * right subtree with q and assign this merged node to p's left subtree (3) Set
-	 * p's right subtree to temp
+	 * (1) Store the left subtree of p in a temp node 
+	 * (2) Recursively merge p's right subtree with q and assign this merged node to p's left subtree 
+	 * (3) Set p's right subtree to temp
 	 * 
-	 * @param p
-	 *            first heap
-	 * @param q
-	 *            second heap
+	 * @param p - first heap
+	 * @param q - second heap
 	 * @return merged heap r formed by merging p and q
 	 * 
 	 * Reference - https://en.wikipedia.org/wiki/Skew_heap
@@ -57,7 +53,7 @@ public class MergeablePriorityQueue {
 			Node temp = p.left;
 			p.left = merge(p.right, q);
 			p.right = temp;
-			return p;
+			return p; 
 		} else
 			return merge(q, p);
 	}
@@ -83,8 +79,7 @@ public class MergeablePriorityQueue {
 	 * Removes the value specified by val from the priority queue.
 	 * 
 	 * @param val
-	 * @return true if queue contains val, false if the queue is null or does not
-	 *         contain the element
+	 * @return true if queue contains val, false if the queue is null or does not contain the element
 	 */
 	public boolean remove(int val) {
 
@@ -100,17 +95,13 @@ public class MergeablePriorityQueue {
 	 * Remove element val from priority queue. The element is removed from priority
 	 * queue as follows
 	 * 
-	 * (1) if the left node of current node n contains the value to be deleted,
-	 * merge the left and right subtrees of n.left (2) if the right node of current
-	 * node n contains the value to be deleted, merge the left and right subtrees of
-	 * n.right (3) recurse to left and right subtrees
+	 * (1) if the left node of current node n contains the value to be deleted, merge the left and right subtrees of n.left 
+	 * (2) if the right node of current node n contains the value to be deleted, merge the left and right subtrees of n.right 
+	 * (3) recurse to left and right subtrees
 	 * 
-	 * @param n
-	 *            node of priority queue
-	 * @param val
-	 *            element to remove
-	 * @return Node containing element to remove or null if element not found in
-	 *         priority queue 
+	 * @param n - node of priority queue
+	 * @param val - element to remove
+	 * @return Node containing element to remove or null if element not found in priority queue 
 	 * Reference -
 	 *         https://stackoverflow.com/questions/21463973/remove-method-for-skew-heap
 	 */
@@ -146,10 +137,8 @@ public class MergeablePriorityQueue {
 	/**
 	 * Returns true if priority queue contains the specified element.
 	 * 
-	 * @param val
-	 *            value to be checked for presence in queue
-	 * @return boolean true if the queue contains at least one node whose data is
-	 *         equal to val
+	 * @param val - value to be checked for presence in queue
+	 * @return boolean true if the queue contains at least one node whose data is equal to val
 	 */
 	public boolean contains(int val) {
 
@@ -162,13 +151,10 @@ public class MergeablePriorityQueue {
 	}
 
 	/**
-	 * Inorder traversal of heap. If the element sought is found, set the found flag
-	 * to true
+	 * Inorder traversal of heap. If the element sought is found, set the found flag to true
 	 * 
-	 * @param n
-	 *            Node of the priority queue
-	 * @param val
-	 *            value to be checked for presence in queue
+	 * @param n - Node of the priority queue
+	 * @param val - value to be checked for presence in queue
 	 */
 
 	private Node inorder(Node n, int val) {
@@ -208,6 +194,27 @@ public class MergeablePriorityQueue {
 		return size;
 	}
 
+	/**
+	 * Inorder traversal of heap.
+	 * 
+	 * @param n - Node of the priority queue
+	 */
+
+	public void inorder() {
+		inorder(root);
+	}
+
+	private void inorder(Node n) {
+		if (n == null)
+			return;
+
+		inorder(n.left);
+		System.out.println(n.data);
+
+		inorder(n.right);
+
+	}
+
 	public static void main(String[] args) throws Exception {
 		MergeablePriorityQueue mpq = new MergeablePriorityQueue();
 
@@ -242,28 +249,6 @@ public class MergeablePriorityQueue {
 		System.out.println( "=========================== Repeatedly remove min element of priority queue ===========================");
 		while (mpq.root != null)
 			System.out.println("removed : " + mpq.poll().data);
-
-	}
-
-	/**
-	 * Inorder traversal of heap.
-	 * 
-	 * @param n
-	 *            Node of the priority queue
-	 */
-
-	public void inorder() {
-		inorder(root);
-	}
-
-	private void inorder(Node n) {
-		if (n == null)
-			return;
-
-		inorder(n.left);
-		System.out.println(n.data);
-
-		inorder(n.right);
 
 	}
 }
