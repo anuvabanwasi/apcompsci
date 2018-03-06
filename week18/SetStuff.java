@@ -250,7 +250,7 @@ public class SetStuff {
 		return list;
 	}
 	
-	private static void printArr(int[] arr)
+	public static void printArr(int[] arr)
 	{
 		for(int i : arr)
 			System.out.print(i + " ");
