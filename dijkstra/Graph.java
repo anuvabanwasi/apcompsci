@@ -63,32 +63,32 @@ public class Graph {
 	 */
 	Graph(List<List<List<Integer>>> adjList) {
 
-		int cnt = 0;												   // implicitly track source node
+		int cnt = 0;											      // implicitly track source node
 
 		// Iterate through the adjacency list. Each element of the adjacency list is a set of edges. 
 		// Each edge connecting node and node v is represented is represented by 3 elements (src, dest,weight). 
 		// The first is the identifier of the source node and the second is the identifier of the destination node and the third is the weight
 		for (List<List<Integer>> edgeList : adjList) {
 			
-			Node source = new Node(cnt);							    // Create source node
+			Node source = new Node(cnt);							              // Create source node
 			
-			List<Edge> edges = new ArrayList<Edge>();				// Create empty list of edges associated with the source node
+			List<Edge> edges = new ArrayList<Edge>();				                      // Create empty list of edges associated with the source node
 			
 			for (List<Integer> edge : edgeList) {
 				
-				Node destination =  new Node(edge.get(0));			// Identify destination node 
-				int weight = edge.get(1);							// Identify edge weight
+				Node destination =  new Node(edge.get(0));			                      // Identify destination node 
+				int weight = edge.get(1);							      // Identify edge weight
 				
-				Edge e = new Edge(source, destination, weight);		// Create edge connecting source node to destination node with weight w
+				Edge e = new Edge(source, destination, weight);		                              // Create edge connecting source node to destination node with weight w
 					
-				edges.add(e);										// add edge e to the list of edges for source node 
+				edges.add(e);									      // add edge e to the list of edges for source node 
 			}
 			
-			graph.put(source, edges);								// store list of edges for source node in the graph
+			graph.put(source, edges);								      // store list of edges for source node in the graph
 			cnt++; 
 		}
 
-		size = graph.size();										   // store the number of nodes in the graph
+		size = graph.size();										      // store the number of nodes in the graph
 		
 	}
 	

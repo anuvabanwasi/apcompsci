@@ -11,9 +11,9 @@
  */
 public class Edge {
 	
-	private Node source;									    // Source node of the edge
+	private Node source;									// Source node of the edge
 	private Node destination;								// Destination node of the edge
-	private int weight;										// cost/weight of the edge
+	private int weight;									// cost/weight of the edge
 
 	Edge(Node source, Node destination, int weight){
 		this.source = source;

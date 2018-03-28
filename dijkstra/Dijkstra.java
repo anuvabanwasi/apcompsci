@@ -36,10 +36,10 @@ public class Dijkstra {
 	private Graph inputGraph;
 	private Node inputNode;
 	
-	private int[] dist;											// keeps track of the distances of inputNode node to each of the other nodes in the graph. dist[i] is the value of the shortest distance from inputNode node to node i
-	private int[] prev;											// keeps track of the predecessor in the path from inputNode node to each of the other nodes in the graph
-	boolean[] visited;									// keeps track of all nodes visited by the algorithm
-	private List<Integer> Q = new ArrayList<Integer>();			// Create a set of all the unvisited nodes
+	private int[] dist;			// keeps track of the distances of inputNode node to each of the other nodes in the graph. dist[i] is the value of the shortest distance from inputNode node to node i
+	private int[] prev;			// keeps track of the predecessor in the path from inputNode node to each of the other nodes in the graph
+	private boolean[] visited;		// keeps track of all nodes visited by the algorithm
+	private List<Integer> Q = new ArrayList<Integer>();	                // Create a set of all the unvisited nodes
 
 	private List<int[]> expectedDist;					// used for testing
 	private List<int[]> expectedPrev;					// used for testing
@@ -136,9 +136,9 @@ public class Dijkstra {
 			Node v = e.getDestination();
 			int weight = e.getWeight();
 
-			int alt = dist[u] + weight;						 					  // for every node v, adjacent to u, if there is an edge from u to v, where v is not visited and
+			int alt = dist[u] + weight;					       // for every node v, adjacent to u, if there is an edge from u to v, where v is not visited and
 			if (!visited[v.getIdentifier()] && alt < dist[v.getIdentifier()]) {    // total weight of path from inputNode to v through u is smaller than current value of dist[v], 
-				dist[v.getIdentifier()] = alt;									 // update the value of dist[v] with the sum of the current total distance to u and the weight of the edge (u,v)
+				dist[v.getIdentifier()] = alt;				       // update the value of dist[v] with the sum of the current total distance to u and the weight of the edge (u,v)
 				prev[v.getIdentifier()] = u;
 			}
 		}
