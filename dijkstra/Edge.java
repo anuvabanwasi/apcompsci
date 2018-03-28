@@ -1,4 +1,5 @@
 
+
 /**
  * Represents a edge of the graph. An edge of the graph connects a source node to a destination node and has a cost or weight.
  * An edge is represented by a triplet (S, D, W)
@@ -10,7 +11,7 @@
  */
 public class Edge {
 	
-	private Node source;									// Source node of the edge
+	private Node source;									    // Source node of the edge
 	private Node destination;								// Destination node of the edge
 	private int weight;										// cost/weight of the edge
 

@@ -1,4 +1,5 @@
 
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -62,14 +63,14 @@ public class Graph {
 	 */
 	Graph(List<List<List<Integer>>> adjList) {
 
-		int cnt = 0;												// implicitly track source node
+		int cnt = 0;												   // implicitly track source node
 
 		// Iterate through the adjacency list. Each element of the adjacency list is a set of edges. 
 		// Each edge connecting node and node v is represented is represented by 3 elements (src, dest,weight). 
 		// The first is the identifier of the source node and the second is the identifier of the destination node and the third is the weight
 		for (List<List<Integer>> edgeList : adjList) {
 			
-			Node source = new Node(cnt);							// Create source node
+			Node source = new Node(cnt);							    // Create source node
 			
 			List<Edge> edges = new ArrayList<Edge>();				// Create empty list of edges associated with the source node
 			
@@ -87,14 +88,14 @@ public class Graph {
 			cnt++; 
 		}
 
-		size = graph.size();										// store the number of nodes in the graph
+		size = graph.size();										   // store the number of nodes in the graph
 		
 	}
 	
 	/**
 	 * Print hashmap representation of the graph
 	 */
-	private  void printHashMap(){
+	private void printHashMap(){
 		for(Map.Entry<Node, List<Edge>> entry : graph.entrySet()){
 			System.out.print("key " + entry.getKey().getIdentifier()  + " -> ");
 			
