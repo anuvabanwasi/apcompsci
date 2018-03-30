@@ -1,48 +1,40 @@
-package com.apcs.qlearning;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * An implementation of Q-Learning algorithm
- * 
  * An unsupervised learning algorithm to find a path from initial state to goal state 
- * 
  * Reference - http://mnemstudio.org/path-finding-q-learning-tutorial.htm
- * 
+ *
  * @author Anuva
  *
  */
 public class QLearning {
 	
-	int n = 6;										// number of states
-	
-	int[][] R;										// reward matrix
+	int n = 6;									// number of states
+	int[][] R;									// reward matrix
 	
 	QLearning(int[][]R){
 		this.R = R;
 	}
-	
-	int[][] Q = new int[R.length][R[0].length];		// q-matrix - rows represent the current state and columns represent the possible actions leading to the next state
-	
+	//int[][] Q = new int[R.length][R[0].length];	// q-matrix - rows represent the current state and columns represent the possible actions leading to the next state
+	int[][] Q = new int[6][6];
 	
 	public static void main(String[] args){
 		
 		int[][] R = { 							// reward matrix similar to adjacency matrix representation of graph
 				  {-1, -1, -1, -1,  0, -1},		// rows represent state and columns represent action
-			      {-1, -1, -1,  0, -1, 100},	// state not directly connected to the target state have zero reward
+			      {-1, -1, -1,  0, -1, 100},	    // state not directly connected to the target state have zero reward
 			      {-1, -1, -1,  0, -1, -1},		// state directly connected to the target state have instant reward of 100
 			      {-1,  0,  0, -1,  0, -1},		// -1 when there isn't a link between nodes
 			      { 0, -1, -1,  0, -1, 100},
 			      {-1,  0, -1, -1,  0, 100}
 		};
-	
-		
-		QLearning ql = new QLearning(R);		
-		
+			
+		QLearning ql = new QLearning(R);				
 		int goalState = 5;
 		
-		ql.qLearning(goalState);				// initiate learning for goal state
+		ql.qLearning(goalState);					// initiate learning for goal state
 	}
 
 	/**
@@ -51,27 +43,24 @@ public class QLearning {
 	 */
 	private void qLearning(int goalState) {
 		
-		int cnt = 1;
-		
+		int cnt = 1;		
 		boolean hasConverged = false;
+		int[][] prevQ = makeArrCopy(Q);			// make a copy of Q, used to determine convergence
 		
-		int[][] prevQ = makeArrCopy(Q);									// make a copy of Q, used to determine convergence
-		
-		while(!hasConverged){											// convergence is defined as when the currentQ and prevQ are identical (have not changed) for 10 episodes
+		while(!hasConverged){					// convergence is defined as when the currentQ and prevQ are identical (have not changed) for 10 episodes		
 			
-			runEpisode(goalState);										// run episode
+			runEpisode(goalState);				// run episode		
+			boolean identical = compareMatrix(prevQ, Q);	// check if current Q matrix and previous Q matrix are identical
 			
-			boolean identical = compareMatrix(prevQ, Q);				// check if current Q matrix and previous Q matrix are identical
-			
-			if(identical)												// if identical, increment count
+			if(identical)						// if identical, increment count
 				cnt++;			
 			else
-				cnt = 0;
+				cnt = 0;		
 			
-			prevQ = makeArrCopy(Q);										// reset previousQ
+			prevQ = makeArrCopy(Q);				// reset previousQ
 			
 			if(cnt == 10)
-				hasConverged = true;									// check for convergence
+				hasConverged = true;				// check for convergence
 		}
 	}
 
@@ -81,37 +70,29 @@ public class QLearning {
 	 */
 	private void runEpisode(int goalState) {
 		
-		int initialState = getRandomState(n);								// set initial state
-		
-		int currentState = initialState;									// set current state
+		int initialState = getRandomState(n);	// set initial state		
+		int currentState = initialState;			// set current state
 				
-		while(currentState != goalState) {									// loop while current state is not goal state
+		while(currentState != goalState) {		// loop while current state is not goal state
 			
 			//System.out.println("current state is " + currentState);
-
-			int[] possibleActions = getPossibleActions(currentState);	// list of possible actions for current state
-			
+			int[] possibleActions = getPossibleActions(currentState);	// list of possible actions for current state		
 			//System.out.println("possible actions are " );
 			
 			printArr(possibleActions);
 			
-			int action = getRandomAction(possibleActions);					// select one of the possible actions randomly
-			
-			int nextState = action;											// this becomes the next state
-			
+			int action = getRandomAction(possibleActions);// select one of the possible actions randomly	
+			int nextState = action;				// this becomes the next state			
 			//System.out.println("next state is " + nextState);
-	
-			int[] nextActions = getPossibleActions(nextState);			// list of possible actions for next state
 			
+			int[] nextActions = getPossibleActions(nextState);	// list of possible actions for next state
 			//System.out.println("possible next actions are " );
 			
 			printArr(nextActions);
 					
-			Q[currentState][action] = R[currentState][action] + (int)(0.8 * getMaxValue(Q, nextState, nextActions));	// find the action with the highest Q value
-			
-			currentState = nextState;										// set current state to next state
-		}
-		
+			Q[currentState][action] = R[currentState][action] + (int)(0.8 * getMaxValue(Q, nextState, nextActions));	// find the action with the highest Q value			
+			currentState = nextState;			// set current state to next state
+		}		
 		printMatrix(Q);
 	}
 	
@@ -123,6 +104,7 @@ public class QLearning {
 	 * @return
 	 */
 	private int getMaxValue(int[][] Q, int nextState, int[] nextActions) {
+		
 		int maxQ = Integer.MIN_VALUE;
 		
 		for(int i = 0; i < nextActions.length; i++){
@@ -130,7 +112,6 @@ public class QLearning {
 				maxQ = Q[nextState][nextActions[i]];
 			}
 		}
-		
 		return maxQ;
 	}
 	
@@ -153,8 +134,8 @@ public class QLearning {
 	 * @return integer array representing list of possible actions at a given state
 	 */
 	private int[] getPossibleActions(int state) {
-		List<Integer> actions = new ArrayList<Integer>();
 		
+		List<Integer> actions = new ArrayList<Integer>();		
 		for(int j = 0; j < R[0].length; j++){
 			if(R[state][j] != -1)
 				actions.add(j);
@@ -195,9 +176,9 @@ public class QLearning {
 	 * @param list 
 	 * @return int[]
 	 */
-	private int[] toArray(List<Integer> list){
-		int[] arr = new int[list.size()];
+	private int[] toArray(List<Integer> list) {
 		
+		int[] arr = new int[list.size()];		
 		for(int i = 0; i < arr.length; i++)
 			arr[i] = list.get(i);
 		
@@ -209,7 +190,8 @@ public class QLearning {
 	 * @param matrix	
 	 * @return 2d integer array representing copy of matrix
 	 */
-	private int[][] makeArrCopy(int[][] matrix){
+	private int[][] makeArrCopy(int[][] matrix) {
+		
 		int [][] myInt = new int[matrix.length][];
 		for(int i = 0; i < matrix.length; i++)
 		{
@@ -217,14 +199,13 @@ public class QLearning {
 		  int   aLength = aMatrix.length;
 		  myInt[i] = new int[aLength];
 		  System.arraycopy(aMatrix, 0, myInt[i], 0, aLength);
-		}
-		
+		}		
 		return myInt;
 	}
 	
 	private void printMatrix(int[][] q) {
-		for(int i = 0; i < q.length; i++){
-			for(int j = 0; j < q[0].length; j++){
+		for(int i = 0; i < q.length; i++) {
+			for(int j = 0; j < q[0].length; j++) {
 				System.out.print(q[i][j] + " ");
 			}
 			System.out.println();
