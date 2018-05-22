@@ -1,1 +1,0 @@
-{"index":{"over":[1],"but":[3],"some":[3],"quick":[1],"betty":[3],"butter":[3],"sells":[2],"shells":[2],"lazy":[1],"bought":[3],"more":[3],"shore":[2],"was":[3],"jumps":[1],"brown":[1],"bitter":[3],"fox":[1],"sea":[2],"the":[1,2,3],"better":[3],"she":[2],"so":[3],"dog":[1,2],"on":[2]}}
